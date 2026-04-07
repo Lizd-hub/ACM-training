@@ -1,0 +1,1 @@
+{"name":"Local: p1102Optimization","url":"c:\\cpp program\\ACM-training\\p1102Optimization.cpp","tests":[{"id":1775560103413,"input":"4 1\n1 1 2 3\n","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\cpp program\\ACM-training\\p1102Optimization.cpp","group":"local","local":true}
