@@ -1,31 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int MAP[100][100] = {0};
+#define int long long
+long long MAP[100][100] = {0};//全局初始化置0，写不写{0}不影响
+long long memo[100][100];
 int position[20] = {-2,-1,-2,1,-1,2,1,2,2,1,2,-1,1,-2,-1,-2};
 
-int find(int n,int m){
+long long find(int n,int m){
     if(n == 2 && m == 2) return 1;
+    if(memo[n][m] != -1) return memo[n][m];
+    int ans = 0;
 
     if(n - 1 >= 2 && m - 1 >= 2 && MAP[n - 1][m] != 1 && MAP[n][m - 1] != 1){
-        return find(n - 1,m) + find(n,m - 1);
+        ans = find(n - 1,m) + find(n,m - 1);
+    }
+    else if(n - 1 >= 2 && MAP[n - 1][m] != 1){
+        ans = find(n - 1,m);
+    }
+    else if(m - 1 >= 2 && MAP[n][m - 1] != 1){
+        ans = find(n,m - 1);
     }
 
-    if(n - 1 >= 2 && MAP[n - 1][m] != 1){
-        return find(n - 1,m);
-    }
+    memo[n][m] = ans;
 
-    if(m - 1 >= 2 && MAP[n][m - 1] != 1){
-        return find(n,m - 1);
-    }
-
-    return 0;
+    return ans;
 }
 
-int main(){
+signed main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
+
+    memset(memo,-1,sizeof(memo));
 
     int n,m,x,y;
     cin>>n>>m>>x>>y;
@@ -42,7 +47,7 @@ int main(){
         MAP[x + position[i]][y + position[i + 1]] = 1;
     }
     
-    int ans = find(n,m);
+    long long ans = find(n,m);
 
     cout<<ans<<endl;
     
