@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
+
 long long MAP[100][100] = {0};//全局初始化置0，写不写{0}不影响
 long long memo[100][100];
-int position[20] = {-2,-1,-2,1,-1,2,1,2,2,1,2,-1,1,-2,-1,-2};
+long long position[20] = {-2,-1,-2,1,-1,2,1,2,2,1,2,-1,1,-2,-1,-2};
 
 long long find(int n,int m){
     if(n == 2 && m == 2) return 1;
