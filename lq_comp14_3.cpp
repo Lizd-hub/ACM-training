@@ -13,10 +13,10 @@ signed main(){
     int maxnum = 99999999;int minnum = 0;
 
     for(int i = 0;i < N;i ++){
-        double a,b;
+        int a,b;
         cin>>a>>b;
-        if(floor(a/b) < maxnum) maxnum = floor(a/b);
-        if(ceil(a/(b + 1)) > minnum) minnum = ceil(a/(b + 1));
+        if((a/b) < maxnum) maxnum = (a/b);
+        if(a/(b + 1) + 1 > minnum) minnum = a/(b + 1) + 1;
     }
     
     cout<<minnum<<' '<<maxnum;
