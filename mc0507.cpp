@@ -28,15 +28,18 @@ signed main(){
                 for(int v = 1;v <= m;v ++){
                     if(u < i || v < j) continue;
                     if(u == i && v == j){
-                        if(S[i][j] - S[i - 1][j] - S[i][j - 1] + S[i - 1][j - 1] == 1) ans++;
+                        if(S[u][v] - S[u - 1][v] - S[u][v - 1] + S[u - 1][v - 1] == 1) ans++;
+                        continue;
                     }
 
-                    if()    
-                    
+                    int cnt = S[u][v] - S[i - 1][v] - S[u][j - 1] + S[i - 1][j - 1];
+                    if(cnt > (u - i + 1)*(v - j + 1) >> 1) ans++;    
 
                 }
             }
         }
     }
+
+    cout<<ans;
     return 0;
 }
