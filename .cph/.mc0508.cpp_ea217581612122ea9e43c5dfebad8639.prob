@@ -1,0 +1,1 @@
+{"name":"Local: mc0508","url":"c:\\cpp program\\ACM-training\\mc0508.cpp","tests":[{"id":1779376843118,"input":"7 3\n3 3 3 1 1 2 2\n1 5\n2 4\n1 7","output":"3\n2\n3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\cpp program\\ACM-training\\mc0508.cpp","group":"local","local":true}
