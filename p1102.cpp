@@ -1,57 +1,53 @@
 #include<bits/stdc++.h>
-#include <functional>
 using namespace std;
+#define int long long
 
-#define ll long long
+const int maxn = 2e5 + 5;
+int num[maxn];
 
-void f(ll* x,ll* y,ll n,ll m,ll c,ll* num);
+int findpos(int C,int n);
 
 void solve(){
-    ll n,c,ans;
+    int n,c,ans;
     ans = 0;
 
     cin>>n>>c;
 
-    ll num[n + 1];
-
-    for(ll i = 0;i < n;i ++){
+    for(int i = 0;i < n;i ++){
         cin>>num[i];
     }
 
-    sort(num,num + n,greater<ll>());
+    sort(num,num + n,greater<int>());
 
-    for(ll i = 0;i < n - 1;i ++){
-        ll x,y;
-        f(&x,&y,i,n - 1,c,num);
-        for(ll j = x;j <= y;j ++){
-            if(num[i] - num[j] == c) ans++;
-        }
+    int pos = findpos(c,n);
+    int upperbound,lowerbound;
+    upperbound = lowerbound = pos;
+    while(num[0] - num[upperbound] <= c) upperbound++;
+    while(num[0] - num[lowerbound - 1] == c) lowerbound--;
+    ans += upperbound - lowerbound;
+
+    for(int i = 1;i < n;i ++){
+        if(num[i] < c) break;
+
+        while(num[i] - num[upperbound] <= c && upperbound < n) upperbound++;
+        while(num[i] - num[lowerbound] < c && lowerbound < n) lowerbound++;
+        ans += upperbound - lowerbound;
     }
 
     cout<<ans<<endl;
 }
 
-void f(ll* x,ll* y,ll n,ll m,ll c,ll* num){
-    *x = n;
-    *y = m;
-    ll pos;
-    pos = (*x + *y)/2;
-    while(*y - *x > 1){
-        if(num[n] - num[pos] == c) return;
-
-        if(num[n] - num[pos] > c){
-            *y = pos;
-            pos = (*x + *y)/2;
-        }
-        else if (num[n] - num[pos] < c) {
-            *x = pos;
-            pos = (*x + *y)/2;            
-        }
-        
+int findpos(int C,int n){
+    int l = 0,r = n - 1;
+    while(r - l > 1){
+        int povt = (l + r) >> 1;
+        if(num[0] - num[povt] >= C) r = povt;
+        if(num[0] - num[povt] < C) l = povt;
     }
-
+    return r;
 }
-int main(){
+
+signed main(){
     ios::sync_with_stdio(false);
     cin.tie(0);
     cout.tie(0);
