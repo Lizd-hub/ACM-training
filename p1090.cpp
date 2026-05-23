@@ -4,7 +4,6 @@
 using namespace std;
 #define int long long
 
-const int maxn = 10005;
 priority_queue<int, vector<int>,greater<int>> pq;
 
 signed main(){
